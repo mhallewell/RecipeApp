@@ -6,4 +6,16 @@ img.resize{
 	background-color: #C7EFCF;
   text-align: center;
   font-family: caviar;
+  color: #D6D1B1;
+}
+#menu{
+    float: left;
+
+  }
+.logout{
+    float: right;
+  }
+ul{
+list-style-type: none;
+text-align: left;
 }
