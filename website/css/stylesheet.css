@@ -2,3 +2,8 @@ img.resize{
   width: 20px;
   height: 40px;
 }
+#header {
+	background-color: #C7EFCF;
+  text-align: center;
+  font-family: caviar;
+}
