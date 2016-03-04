@@ -125,15 +125,21 @@ class Database
 	public function deleteUser($userId)
 	{
 		// TODO setup admin check
+		if (get_class($_SESSION['User']) == "Administrator") 
+		{
+			$db = $this->connect();
 		
-		$db = $this->connect();
+			$query = "DELETE FROM `Users` ";
+			$query .= " WHERE userId = " . $db->escape_string($userId);
 		
-		$query = "DELETE FROM `Users` ";
-		$query .= " WHERE userId = " . $db->escape_string($userId);
+			$result = $db->query($query);
 		
-		$result = $db->query($query);
-		
-		return $db->affected_rows;
+			return $db->affected_rows;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 
 }
