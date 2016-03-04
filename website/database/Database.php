@@ -81,7 +81,7 @@ class Database
 		$query .= ",";
 		$query .= "'" . $db->escape_string($name) . "'";
 		$query .= ");";
-		echo $query;
+		//echo $query;
 		
 		$result = $db->query($query);
 		
@@ -97,5 +97,44 @@ class Database
 
 		return $this->login($userId);		
 	}
+
+	/*
+	Purpose: To allow the updating of a user in the database
+	Parameters: $userId The user's id
+			$name The user's name
+	*/
+	public function updateUser($userId, $name)
+	{
+		$db = $this->connect();
+		
+		$query = "UPDATE `Users` ";
+		$query .= "SET username=";
+		$query .= "'" . $db->escape_string($name) . "'";
+		$query .= "\nWHERE userId = " . $db->escape_string($userId);
+
+		$result = $db->query($query);
+
+		return $this->login($userId);
+	}
+
+	/*
+	Purpose: To allow the deletion of a user in the database
+	Parameters: $userId The user's id
+	Returns: The number of affected rows
+	*/
+	public function deleteUser($userId)
+	{
+		// TODO setup admin check
+		
+		$db = $this->connect();
+		
+		$query = "DELETE FROM `Users` ";
+		$query .= " WHERE userId = " . $db->escape_string($userId);
+		
+		$result = $db->query($query);
+		
+		return $db->affected_rows;
+	}
+
 }
 ?>
