@@ -195,9 +195,9 @@ class Database
 			foreach ($recipe.getIngredients() as $ingredient)
 			{
 				$query .= "(";
-				$query .= $db->escape_string($ingredient['name']);
+				$query .= $db->escape_string($ingredient->getName());
 				$query .= ",";
-				$query .= $db->escape_string($ingredient['quantity']);
+				$query .= $db->escape_string($ingredient->getQuantity());
 				$query .= ",";
 				$query .= $db->escape_string($recipeId);
 				$query .= "),"
