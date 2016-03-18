@@ -142,5 +142,74 @@ class Database
 		}
 	}
 
+
+	/*
+	Purpose: To allow the creation of a recipe
+	Parameters: $userId The user's id
+			$recipe The recipe to create
+	Returns: The recipeId that was inserted, or -1 if it was not inserted
+	*/
+	public function createRecipe($userId, $recipe)
+	{
+		if (get_class($recipe) == "Recipe")
+		{
+			$db = $this->connect();
+			
+			$query = "INSERT INTO `Recipes` ";
+			$query .= " (recipename, description, instructions, userId) VALUES (";
+			$query .= $db->escape_string($recipe.getName());
+			$query .= ",";
+			$query .= "'" . $db->escape_string($recipe.getDescription()) . "'";
+			$query .= ",";
+			$query .= "'" . $db->escape_string($recipe.getInstructions()) . "'";
+			$query .= ",";
+			$query .= "'" . $db->escape_string($userId) . "'";
+			$query .= ");";
+
+			$result = $db->query($query);
+			
+			$recipe->setId($result);
+
+			$db->insertIngredients($result, $recipe);
+	
+			return $result;
+		}
+		else
+			// We can't insert a non recipe
+			return -1;
+	}
+		
+
+	/*
+	Purpose: To insert all the ingredients of a recipe into the database
+	Parameters: $recipeId The id of the recipe to attach the ingredient to
+			$recipe The recipe to insert into the database
+	*/
+	public function insertIngredients($recipeId, $recipe)
+	{
+		if (get_class($recipe) == "Recipe")
+		{
+			$db = $this->connect();
+
+			$query = "INSERT INTO `Ingredients` (name, quantity, recipeId) VALUES ";
+			foreach ($recipe.getIngredients() as $ingredient)
+			{
+				$query .= "(";
+				$query .= $db->escape_string($ingredient['name']);
+				$query .= ",";
+				$query .= $db->escape_string($ingredient['quantity']);
+				$query .= ",";
+				$query .= $db->escape_string($recipeId);
+				$query .= "),"
+			}
+			// Remove the extra comma at the end
+			rtrim($query, ",");
+			$query .= ";";
+
+			$result = $db->query($query);
+		}
+	}
+			
+			
 }
 ?>
