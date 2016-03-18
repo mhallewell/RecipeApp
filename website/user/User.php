@@ -4,14 +4,28 @@ class User
 {
 	private $userId;
 	private $username;
-	private $access_token;
+	private $accessToken;
 	
 	public __constructor($id, $name, $access)
 	{
 		$userId = $id;
 		$username = $name;
-		$access_token = $access;
+		$accessToken = $access;
 	}
 
+	public function getName()
+	{
+		return $this->username;
+	}
+
+	public function getAccessToken()
+	{
+		return $this->accessToken;
+	}
+	
+	public function getUserId()
+	{
+		return $this->userId;
+	}
 }
 ?>
