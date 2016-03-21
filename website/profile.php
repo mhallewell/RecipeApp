@@ -1,5 +1,5 @@
 <?php
-require "database/Database.php";
+require_once "database/Database.php";
 
 // Get a connection to the database
 if (!isset($_SESSION['database']))
@@ -16,5 +16,5 @@ if (!isset($_SESSION['user']))
 else
 {
 	// TODO Add in the profile generation
-	include "html/profilepage.html";
+	include "html/profilepage.php";
 }

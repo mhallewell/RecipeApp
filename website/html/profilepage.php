@@ -7,7 +7,7 @@
 <body>
   <div id="header">
 
-    <a class="logout" href="login.html"><img src="http://dabuttonfactory.com/button.png?t=Logout&f=Caviar-Bold&ts=20&tc=eef5db&hp=20&vp=8&c=1&bgt=gradient&bgc=fe5f55&ebgc=fe5f55"/></a>
+    <a class="logout" href="logout.php"><img src="http://dabuttonfactory.com/button.png?t=Logout&f=Caviar-Bold&ts=20&tc=eef5db&hp=20&vp=8&c=1&bgt=gradient&bgc=fe5f55&ebgc=fe5f55"/></a>
     <!-- <h1>Recipe Calendar</h1> -->
     <div id="menu">
       <ul>
@@ -20,6 +20,7 @@
       </ul>
     </div>
   </div>
-
+  <div class="mainbody" >This is the main body.
+	<div> Username: <?php echo ($_SESSION["user"]->getName()); ?> </div>
 </body>
 </html>

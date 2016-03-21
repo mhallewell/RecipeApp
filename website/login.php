@@ -2,6 +2,8 @@
 require "database/Database.php";
 require "user/User.php";
 
+session_start();
+
 // Get a connection to the database
 if (!isset($_SESSION['database']))
 {

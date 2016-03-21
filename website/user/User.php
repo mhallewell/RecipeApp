@@ -6,23 +6,22 @@ class User
 	private $username;
 	private $accessToken;
 	
-	public __constructor($id, $name, $access)
+
+	public function __construct($id, $name, $access)
 	{
-		$userId = $id;
-		$username = $name;
-		$accessToken = $access;
+		$this->userId = $id;
+		$this->username = $name;
+		$this->accessToken = $access;
 	}
 
 	public function getName()
 	{
 		return $this->username;
 	}
-
 	public function getAccessToken()
 	{
 		return $this->accessToken;
 	}
-	
 	public function getUserId()
 	{
 		return $this->userId;
