@@ -185,7 +185,7 @@ class Database
 	Parameters: $recipeId The id of the recipe to attach the ingredient to
 			$recipe The recipe to insert into the database
 	*/
-	public function insertIngredients($recipeId, $recipe)
+	/*public function insertIngredients($recipeId, $recipe)
 	{
 		if (get_class($recipe) == "Recipe")
 		{
@@ -209,7 +209,7 @@ class Database
 			$result = $db->query($query);
 		}
 	}
-			
+	*/		
 			
 }
 ?>
