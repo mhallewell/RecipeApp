@@ -18,6 +18,7 @@ class Recipe
 		return $this->recipeId;
 	}	
 
+	// Used by database to insert the new id into the recipe
 	public function setId($id)
 	{
 		return $this->recipeId = $id;
