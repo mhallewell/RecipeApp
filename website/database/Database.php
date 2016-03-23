@@ -209,7 +209,30 @@ class Database
 			$result = $db->query($query);
 		}
 	}
-	*/		
+	*/	
+
+	public function updateRecipe($recipe)
+	{
+		$db = $this->connect();
+		
+		$query = "UPDATE `Recipes` ";
+		$query .= "SET recipename=";
+		$query .= "'" . $db->escape_string($recipe->getName()) . "',";
+		$query .= "description=";
+		$query .= "'" . $db->escape_string($recipe->getDescription()) . "',";
+		$query .= "instructions=";
+		$query .= "'" . $db->escape_string($recipe->getInstructions()) . "'";
+		$query .= "\nWHERE recipeId = " . $db->escape_string($recipe->getId());
+
+		$result = $db->query($query);
+
+		return $this->selectRecipe($recipe);
+	}
+
+	public function copyRecipe($userId, $recipe)
+	{
+		return createRecipe($userId, $recipe);
+	}
 			
 }
 ?>

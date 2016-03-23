@@ -13,9 +13,30 @@ class Recipe
 		
 	}
 
+	public function getId()
+	{
+		return $this->recipeId;
+	}	
+
+	// Used by database to insert the new id into the recipe
+	public function setId($id)
+	{
+		return $this->recipeId = $id;
+	}
+
+	public function setName($name)
+	{
+		$this->name = $name;
+	}
+
 	public function getName()
 	{
 		return $this->name;
+	}
+
+	public function setDescription($description)
+	{
+		$this->description = $description;
 	}
 
 	public function getDescription()
@@ -23,6 +44,11 @@ class Recipe
 		return $this->description;
 	}
 	
+	public function setInstructions($instructions)
+	{
+		return $this->instructions = $instructions;
+	}
+
 	public function getInstructions()
 	{
 		return $this->instructions;
