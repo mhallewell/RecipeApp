@@ -170,7 +170,7 @@ class Database
 			
 			$recipe->setId($result);
 
-			$db->insertIngredients($result, $recipe);
+			//$db->insertIngredients($result, $recipe);
 	
 			return $result;
 		}

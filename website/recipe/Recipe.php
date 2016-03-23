@@ -21,7 +21,7 @@ class Recipe
 	// Used by database to insert the new id into the recipe
 	public function setId($id)
 	{
-		return $this->recipeId = $id;
+		$this->recipeId = $id;
 	}
 
 	public function setName($name)
@@ -63,6 +63,27 @@ class Recipe
 	{
 		if (get_class($ingredient) == "Ingredient")
 		{
+			$this->ingredients[] = $ingredient;
 		}
+	}
+
+	/*public function removeIngredient($ingredientId)
+	{
+		foreach ($this->ingredients as $key=>$ingredient)
+		{
+			if ($ingredient->getId() == $ingredientId)
+			{
+				$_SESSION['database']->removeIngredient($ingredientId);
+				unset($this->ingredients[$key]);
+				break;
+			}
+		}
+	}*/
+
+	// This function is used by the database class to fill the recipe with 
+	// its ingredients
+	public function fillIngredients($ingredients)
+	{
+		$this->ingredients = $ingredients;
 	}
 }
