@@ -33,11 +33,12 @@ img.menu{
   /*removes left indent automatically done with lists*/
   border-top: 1px double black !important;
   border-bottom: 1px double black !important;
-  margin: 0;
-  padding: 0;
+  margin: 5px;
+  padding: 5px;
   list-style-type: none;
   /*centers menu text*/
   text-align: center;
+  position: relative;
 }
 #menu ul li {
   /*puts menu items in horizontal arrangement*/
