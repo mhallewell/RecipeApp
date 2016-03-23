@@ -31,10 +31,11 @@ img.menu{
 }
 #menu ul{
   /*removes left indent automatically done with lists*/
-  border-top: 1px double black !important;
-  border-bottom: 1px double black !important;
   margin: 0;
   padding: 0;
+  /*adds lines to the top and bottom*/
+  border-top: 1px double black !important;
+  border-bottom: 1px double black !important;
   list-style-type: none;
   /*centers menu text*/
   text-align: center;
@@ -45,8 +46,12 @@ img.menu{
 }
 #menu ul li a {
   font-family: 'Montserrat', sans-serif;
+  color: #000000;
   text-transform: uppercase;
   font-weight: 700;
   text-decoration: none;
   padding: .2em 1em;
+}
+#menu ul li a:hover{
+    color: #C0C0C0;
 }
