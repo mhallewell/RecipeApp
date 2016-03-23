@@ -31,15 +31,22 @@ img.menu{
 }
 #menu ul{
   /*removes left indent automatically done with lists*/
+  border-top: 1px double black !important;
+  border-bottom: 1px double black !important;
   margin: 0;
   padding: 0;
   list-style-type: none;
+  /*centers menu text*/
+  text-align: center;
 }
 #menu ul li {
   /*puts menu items in horizontal arrangement*/
   display: inline;
 }
 #menu ul li a {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
   text-decoration: none;
   padding: .2em 1em;
 }
