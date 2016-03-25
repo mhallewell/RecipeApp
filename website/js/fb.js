@@ -1,6 +1,5 @@
 var accessToken = "null";
 var userData;
-var userEmail;
 
 window.fbAsyncInit = function() {
 	FB.init({
@@ -9,8 +8,6 @@ window.fbAsyncInit = function() {
 		version    : 'v2.5'
 	});
 };
-
-
 
 (function(d, s, id){
 	var js, fjs = d.getElementsByTagName(s)[0];
