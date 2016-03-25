@@ -21,13 +21,13 @@ h1 {
   font-size: 4em;
   color: #D6D1B1;
 }
-
-
 /*Menu*/
 img.menu{
   display: block;
   margin-left: auto;
-  margin-right: auto
+  margin-right: auto;
+  width: 75%;
+  height: 25%;
 }
 #menu ul{
   /*removes left indent automatically done with lists*/
@@ -40,6 +40,9 @@ img.menu{
   /*centers menu text*/
   text-align: center;
   position: relative;
+  width: 75%;
+  display: inline-block;
+
 }
 #menu ul li {
   /*puts menu items in horizontal arrangement*/
