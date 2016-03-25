@@ -4,14 +4,12 @@ function dbLogin(userName, userID) {
 	$.ajax({
 		url: 'login.php',
 		data: {
-		   userId: userID,
-		   username: userName,
-
-		
+		   'userId': userID,
+		   'username': userName,
 		},
 		type: 'post',
 		success: function(output) {
-			alert(output);
+			window.location.href = "index.php";
 		}
 	});
 }

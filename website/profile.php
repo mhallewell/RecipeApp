@@ -10,8 +10,9 @@ if (!isset($_SESSION['database']))
 // Check if the user is logged in
 if (!isset($_SESSION['user']))
 {
-	// If there is no user logged in, redirect to the login 
-	include "html/login.php";
+	// If there is no user logged in, redirect to the index 
+	header("Location: index.php");
+	die(); // End running this php after the redirect
 }
 else
 {

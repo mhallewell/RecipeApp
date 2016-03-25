@@ -28,7 +28,7 @@ function login()
 			FB.api('/me', function(response) 
 			{
 				userData = response;
-				document.getElementById('token').innerHTML = JSON.stringify(userData, null, 4);
+				//document.getElementById('token').innerHTML = JSON.stringify(userData, null, 4);
 				FB.api(('/me/' + userData.id + '?fields=cover'), function(response) {
 					userCover = response.cover;
 					document.createElement('img').appendChild += JSON.stringify(userCover, null, 4);

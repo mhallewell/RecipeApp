@@ -16,7 +16,7 @@ if (!isset($_SESSION['database']))
 // Check if the user is logged in
 if (!isset($_SESSION["user"]))
 {
-	// If there is no user logged in, redirect to the login 
+	// If there is no user logged in, show the login
 	include "html/login.php";
 }
 else

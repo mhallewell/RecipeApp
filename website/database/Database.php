@@ -40,12 +40,14 @@ class Database
 	public function login($userId)
 	{
 		$db = $this->connect();
+		var_dump($userId);
 		
 		$query = "SELECT * FROM `Users` WHERE `UserId` = ";
 		$query .= $db->escape_string($userId);
 			
 		$result = $db->query($query);
-			
+				
+		echo $query;
 		if (!$result)
 		{
 			echo ('There was an error accessing the database <br />');
@@ -81,7 +83,7 @@ class Database
 		$query .= ",";
 		$query .= "'" . $db->escape_string($name) . "'";
 		$query .= ");";
-		//echo $query;
+		echo $query;
 		
 		$result = $db->query($query);
 		
@@ -94,7 +96,6 @@ class Database
 		else
 			echo ("User already exists <br />");
 		*/
-
 		return $this->login($userId);		
 	}
 
@@ -140,6 +141,33 @@ class Database
 		{
 			return 0;
 		}
+	}
+
+	/*
+	Purpose: To allow the selection of a recipe
+	*/
+	public function getRecipe($recipeId)
+	{
+		$db = $this->connect();
+		
+		$query = "SELECT * FROM `Recipes` WHERE ";
+		$query .= "recipeId = ";
+		$query .= $db->escape_string($recipeId);
+		$query .= " LIMIT 1";
+		
+		$result = $db->query($query);
+		
+		// Fill in the recipe with its information
+		$recipe = Recipe();
+
+		$recipe->setId($result['recipeId']);
+		$recipe->setName($result['recipename']);
+		$recipe->setDescription($result['description']);
+		$recipe->setInstructions($result['Instructions']);
+		
+		$this->getIngredients($recipe);
+
+		return $recipe;
 	}
 
 
