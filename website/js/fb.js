@@ -33,6 +33,7 @@ function login()
 					userCover = response.cover;
 					document.createElement('img').appendChild += JSON.stringify(userCover, null, 4);
 				});
+				dbLogin(userData.name,userData.id);
 			});
 		}
 		else if (response.status === 'not_authorized')
