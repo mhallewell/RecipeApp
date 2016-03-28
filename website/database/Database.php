@@ -1,4 +1,8 @@
 <?php
+//require_once("Recipe.php");
+//require_once("Ingredient.php");
+//require_once("User.php");
+
 class Database
 {
 	private $host = "localhost";
@@ -96,6 +100,8 @@ class Database
 		else
 			echo ("User already exists <br />");
 		*/
+
+		$result->free();
 		return $this->login($userId);		
 	}
 
@@ -114,6 +120,8 @@ class Database
 		$query .= "\nWHERE userId = " . $db->escape_string($userId);
 
 		$result = $db->query($query);
+
+		$result->free();
 
 		return $this->login($userId);
 	}
@@ -134,6 +142,8 @@ class Database
 			$query .= " WHERE userId = " . $db->escape_string($userId);
 		
 			$result = $db->query($query);
+
+			$result->free();
 		
 			return $db->affected_rows;
 		}
@@ -146,7 +156,7 @@ class Database
 	/*
 	Purpose: To allow the selection of a recipe
 	*/
-	public function getRecipe($recipeId)
+	public function selectRecipe($recipeId)
 	{
 		$db = $this->connect();
 		
@@ -156,18 +166,50 @@ class Database
 		$query .= " LIMIT 1";
 		
 		$result = $db->query($query);
+
+		$row = $result->fetch_assoc();
+		$result->free();
 		
 		// Fill in the recipe with its information
-		$recipe = Recipe();
+		$recipe = new Recipe();
 
-		$recipe->setId($result['recipeId']);
-		$recipe->setName($result['recipename']);
-		$recipe->setDescription($result['description']);
-		$recipe->setInstructions($result['Instructions']);
+		$recipe->setId($row['recipeId']);
+		$recipe->setName($row['recipename']);
+		$recipe->setDescription($row['description']);
+		$recipe->setInstructions($row['Instructions']);
 		
 		$this->getIngredients($recipe);
 
 		return $recipe;
+	}
+
+	/*
+	Purpose: To get the ingredients for a recipe
+	Note: Modifies the recipe passed in to get the ingredients
+	*/
+	public function getIngredients($recipe)
+	{
+		$db = $this->connect();
+		
+		$query = "SELECT * FROM `Ingredients` WHERE ";
+		$query .= "recipeId = ";
+		$query .= $db->escape_string($recipe->getId());
+		
+		$result = $db->query($query);
+		
+		if ($result != null)
+		{
+
+			while ($row = $result->fetch_assoc())
+			{
+				$ingredient = new Ingredient();
+				$ingredient->setId($row['ingredientId']);
+				$ingredient->setName($row['name']);
+				$ingredient->setQuantity($row['quantity']);
+				$recipe->addIngredient($ingredient);
+			}
+			$result->free();
+		}
 	}
 
 
@@ -184,23 +226,24 @@ class Database
 			$db = $this->connect();
 			
 			$query = "INSERT INTO `Recipes` ";
-			$query .= " (recipename, description, instructions, userId) VALUES (";
-			$query .= $db->escape_string($recipe.getName());
+			$query .= " (recipename, description, instructions, userId) VALUES ('";
+			$query .= $db->escape_string($recipe->getName());
+			$query .= "',";
+			$query .= "'" . $db->escape_string($recipe->getDescription()) . "'";
 			$query .= ",";
-			$query .= "'" . $db->escape_string($recipe.getDescription()) . "'";
-			$query .= ",";
-			$query .= "'" . $db->escape_string($recipe.getInstructions()) . "'";
+			$query .= "'" . $db->escape_string($recipe->getInstructions()) . "'";
 			$query .= ",";
 			$query .= "'" . $db->escape_string($userId) . "'";
 			$query .= ");";
 
 			$result = $db->query($query);
 			
-			$recipe->setId($result);
+			$recipe->setId($db->insert_id);
 
-			//$db->insertIngredients($result, $recipe);
+			$this->insertIngredients($result, $recipe);
+			$result->free;
 	
-			return $result;
+			return $db->insert_id;
 		}
 		else
 			// We can't insert a non recipe
@@ -213,31 +256,30 @@ class Database
 	Parameters: $recipeId The id of the recipe to attach the ingredient to
 			$recipe The recipe to insert into the database
 	*/
-	/*public function insertIngredients($recipeId, $recipe)
+	public function insertIngredients($recipeId, $recipe)
 	{
 		if (get_class($recipe) == "Recipe")
 		{
 			$db = $this->connect();
-
-			$query = "INSERT INTO `Ingredients` (name, quantity, recipeId) VALUES ";
-			foreach ($recipe.getIngredients() as $ingredient)
+			foreach ($recipe->getIngredients() as $ingredient)
 			{
-				$query .= "(";
-				$query .= $db->escape_string($ingredient->getName());
-				$query .= ",";
-				$query .= $db->escape_string($ingredient->getQuantity());
-				$query .= ",";
-				$query .= $db->escape_string($recipeId);
-				$query .= "),"
-			}
-			// Remove the extra comma at the end
-			rtrim($query, ",");
-			$query .= ";";
 
-			$result = $db->query($query);
+				$query = "INSERT INTO `Ingredients` (name, quantity, recipeId) VALUES ";
+				$query .= "('";
+				$query .= $db->escape_string($ingredient->getName());
+				$query .= "','";
+				$query .= $db->escape_string($ingredient->getQuantity());
+				$query .= "',";
+				$query .= $db->escape_string($recipeId);
+				$query .= ")";
+				$query .= ";";
+	
+				$result = $db->query($query);
+				
+				$ingredient->setId($db->insert_id);
+			}
 		}
 	}
-	*/	
 
 	public function updateRecipe($recipe)
 	{
@@ -253,9 +295,11 @@ class Database
 		$query .= "\nWHERE recipeId = " . $db->escape_string($recipe->getId());
 
 		$result = $db->query($query);
+		$result->free();
 
-		return $this->selectRecipe($recipe);
+		return $this->selectRecipe($recipe->getId());
 	}
+	
 
 	public function copyRecipe($userId, $recipe)
 	{

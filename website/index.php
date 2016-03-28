@@ -21,6 +21,9 @@ if (!isset($_SESSION["user"]))
 }
 else
 {
+	// Get the url for redirect purposes
+	$url = parse_url($_SERVER["REQUEST_URI"]);
+	//var_dump($url);
 	// TODO Change to the correct main page
 	include "profile.php";
 }
