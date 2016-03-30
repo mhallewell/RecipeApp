@@ -40,7 +40,7 @@ img.menu{
   /*centers menu text*/
   text-align: center;
   position: relative;
-  width: 75%;
+  width: 100%;
   display: inline-block;
 
 }
@@ -95,4 +95,38 @@ img.menu{
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+/*Main Page*/
+img.mainBody{
+  padding: 1.5%;
+  float:left;
+  width:45%;
+}
+h1{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  color: #000000;
+  text-transform: uppercase;
+  font-weight: 500;
+  float:right;
+  width:50%;
+}
+h2{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  color: #000000;
+  text-transform: uppercase;
+  font-weight: 500;
+  float:right;
+  width:50%;
+}
+h3{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  color: #000000;
+  text-transform: uppercase;
+  font-weight: 500;
+  float:right;
+  width:50%;
 }
