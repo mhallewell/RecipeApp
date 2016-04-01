@@ -96,3 +96,37 @@ img.menu{
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+/*Main Page*/
+img.mainBody{
+  padding: 1.5%;
+  float:left;
+  width:45%;
+}
+h1{
+  font-family: 'Perpetua Titling MT', sans-serif;
+  font-size: 40px;
+  color: #000000;
+  text-transform: uppercase;
+  font-weight: 400;
+  float:right;
+  width:50%;
+}
+h2{
+  font-family: 'Perpetua Titling MT', sans-serif;
+  font-size: 30px;
+  color: #000000;
+  text-transform: uppercase;
+  font-weight: 400;
+  float:right;
+  width:50%;
+}
+h3{
+  font-family: 'Perpetua Titling MT', sans-serif;
+  font-size: 20px;
+  color: #000000;
+  text-transform: uppercase;
+  font-weight: 400;
+  float:right;
+  width:50%;
+}
