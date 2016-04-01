@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<div id="header"></div>
-		<div id="fb-root"></div> 
+		<div id="fb-root"></div>
 		<div id="status"></div>
 		<div> <button onclick="login()">Facebook Login</button> </div>
 		<p id="token"></p>
