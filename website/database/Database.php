@@ -154,6 +154,39 @@ class Database
 	}
 
 	/*
+	Purpose: To allow searching for recipes
+	*/
+	public function searchRecipes($search)
+	{
+		$db = $this->connect();
+		
+		$query = "SELECT * FROM `Recipes` WHERE ";
+		$query .= "LOCATE('";
+		$query .= $db->escape_string($search);
+		$query .= "', recipename) != 0";
+		echo $query;
+		
+		$result = $db->query($query);
+		if ($result != null)
+		{
+			$index = 0;
+			while ($row = $result->fetch_assoc())
+			{
+				$recipes[$index] = new Recipe();
+				$recipes[$index]->setId($row['recipeId']);
+				$recipes[$index]->setName($row['recipename']);
+				$recipes[$index]->setDescription($row['description']);
+				$recipes[$index]->setInstructions($row['instructions']);
+				$this->getIngredients($recipes[$index]);
+				$index += 1;
+			}
+			$result->free();
+		}
+
+		return $recipes;
+	}
+
+	/*
 	Purpose: To allow the selection of a recipe
 	*/
 	public function selectRecipe($recipeId)
@@ -176,7 +209,7 @@ class Database
 		$recipe->setId($row['recipeId']);
 		$recipe->setName($row['recipename']);
 		$recipe->setDescription($row['description']);
-		$recipe->setInstructions($row['Instructions']);
+		$recipe->setInstructions($row['instructions']);
 		
 		$this->getIngredients($recipe);
 
