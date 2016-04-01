@@ -130,3 +130,15 @@ h3{
   float:right;
   width:50%;
 }
+#mainBody a{
+  font-family: 'Perpetua Titling MT', sans-serif;
+  color: #000000;
+  text-transform: uppercase;
+  font-weight: 475;
+  text-decoration: none;
+  padding: .2em 1em;
+  float:right;
+}
+#mainBody a:hover{
+    color: #C0C0C0;
+}
