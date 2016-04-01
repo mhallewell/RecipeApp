@@ -104,29 +104,29 @@ img.mainBody{
   width:45%;
 }
 h1{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Perpetua Titling MT', sans-serif;
   font-size: 40px;
   color: #000000;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 400;
   float:right;
   width:50%;
 }
 h2{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Perpetua Titling MT', sans-serif;
   font-size: 30px;
   color: #000000;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 400;
   float:right;
   width:50%;
 }
 h3{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Perpetua Titling MT', sans-serif;
   font-size: 20px;
   color: #000000;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 400;
   float:right;
   width:50%;
 }
