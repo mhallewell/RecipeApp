@@ -22,9 +22,15 @@ if (!isset($_SESSION["user"]))
 }
 else
 {
-	// TODO Change to the correct main page
-	$recipes = $_SESSION['database']->getRecipesByUserId($_SESSION['user']->getUserId());
-
+	if (!isset($_GET))
+	{
+		// TODO Change to the correct main page
+		$recipes = $_SESSION['database']->getRecipesByUserId($_SESSION['user']->getUserId());
+	}
+	else if (isset($_GET['q']))
+	{
+		$recipes = $_SESSION['database']->searchRecipes($_GET['q']);
+	}
 	include "html/viewAllRecipes.php";
 }
 ?>

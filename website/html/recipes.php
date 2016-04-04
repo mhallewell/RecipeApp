@@ -22,8 +22,8 @@
       <a href="TODO">Appetizer</a>
       <a href="TODO">Dessert</a>
     </div>
-  <form>
-    Search for Recipe: <input type="text" name="firstname">
+  <form action="recipeList.php" method="get">
+    Search for Recipe: <input type="text" name="q">
   </form>
   </div>
 </body>

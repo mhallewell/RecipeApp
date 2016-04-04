@@ -22,6 +22,6 @@ if (!isset($_SESSION["user"]))
 else
 {
 	// TODO Change to the correct main page
-	include "main.php";
+	include "html/main.php";
 }
 ?>

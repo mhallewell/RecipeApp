@@ -1,6 +1,7 @@
 <?php
 require_once "database/Database.php";
-//require_once "user/User.php";
+include_once "recipe/Recipe.php";
+include_once "user/User.php";
 // Code to override login mechanism for testing.
 session_start();
 
@@ -21,7 +22,6 @@ if (!isset($_SESSION["user"]))
 }
 else
 {
-	// TODO Change to the correct main page
-	include "main.php";
+	include "html/recipes.php";
 }
 ?>
