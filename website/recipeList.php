@@ -23,7 +23,7 @@ if (!isset($_SESSION["user"]))
 else
 {
 	// TODO Change to the correct main page
-	$recipes = $_SESSION['database']->searchRecipes("Rice");
+	$recipes = $_SESSION['database']->getRecipesByUserId($_SESSION['user']->getUserId());
 
 	include "html/viewAllRecipes.php";
 }
