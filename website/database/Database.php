@@ -1,7 +1,7 @@
 <?php
-//require_once("Recipe.php");
-//require_once("Ingredient.php");
-//require_once("User.php");
+require_once("recipe/Recipe.php");
+require_once("recipe/Ingredient.php");
+require_once("user/User.php");
 
 class Database
 {
@@ -336,7 +336,7 @@ class Database
 
 	public function copyRecipe($userId, $recipe)
 	{
-		return createRecipe($userId, $recipe);
+		return $this->createRecipe($userId, $recipe);
 	}
 			
 }
