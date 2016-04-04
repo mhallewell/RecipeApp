@@ -100,8 +100,10 @@ class Database
 		else
 			echo ("User already exists <br />");
 		*/
-
-		$result->free();
+		if ($result != null)
+		{
+			$result->free();
+		}
 		return $this->login($userId);		
 	}
 
@@ -164,7 +166,67 @@ class Database
 		$query .= "LOCATE('";
 		$query .= $db->escape_string($search);
 		$query .= "', recipename) != 0";
-		echo $query;
+		
+		$result = $db->query($query);
+		if ($result != null)
+		{
+			$index = 0;
+			while ($row = $result->fetch_assoc())
+			{
+				$recipes[$index] = new Recipe();
+				$recipes[$index]->setId($row['recipeId']);
+				$recipes[$index]->setName($row['recipename']);
+				$recipes[$index]->setDescription($row['description']);
+				$recipes[$index]->setInstructions($row['instructions']);
+				$this->getIngredients($recipes[$index]);
+				$index += 1;
+			}
+			$result->free();
+		}
+
+		return $recipes;
+	}
+
+	/*
+	Purpose: To allow listing all recipes owned by a user
+	*/
+	public function getRecipesByUserId($userId)
+	{
+		$db = $this->connect();
+		
+		$query = "SELECT * FROM `Recipes` WHERE ";
+		$query .= "userId = ";
+		$query .= $db->escape_string($userId);
+		$query .= "'";
+		
+		$result = $db->query($query);
+		if ($result != null)
+		{
+			$index = 0;
+			while ($row = $result->fetch_assoc())
+			{
+				$recipes[$index] = new Recipe();
+				$recipes[$index]->setId($row['recipeId']);
+				$recipes[$index]->setName($row['recipename']);
+				$recipes[$index]->setDescription($row['description']);
+				$recipes[$index]->setInstructions($row['instructions']);
+				$this->getIngredients($recipes[$index]);
+				$index += 1;
+			}
+			$result->free();
+		}
+
+		return $recipes;
+	}
+
+	/*
+	Purpose: To allow listing all recipes
+	*/
+	public function getAllRecipes()
+	{
+		$db = $this->connect();
+		
+		$query = "SELECT * FROM `Recipes`;";
 		
 		$result = $db->query($query);
 		if ($result != null)
@@ -330,9 +392,22 @@ class Database
 		$result = $db->query($query);
 		$result->free();
 
+		$this->updateIngredients($recipe);
+
 		return $this->selectRecipe($recipe->getId());
 	}
 	
+	public function updateIngredients($recipe)
+	{
+		$db = $this->connect();
+		
+		$query = "DELETE FROM `Ingredients` ";
+		$query .= "\nWHERE recipeId = " . $db->escape_string($recipe->getId());
+		$result = $db->query($query);
+		$result->free();
+
+		return $this->insertIngredients($recipe->getId(), $recipe);
+	}	
 
 	public function copyRecipe($userId, $recipe)
 	{

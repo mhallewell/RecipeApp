@@ -23,7 +23,7 @@ function login()
 	{
 		if(response.status === 'connected')
 		{
-			document.getElementById('status').innerHTML = 'Connected';
+			//document.getElementById('status').innerHTML = 'Connected';
 			accessToken = response.authResponse.accessToken;
 			FB.api('/me', function(response) 
 			{

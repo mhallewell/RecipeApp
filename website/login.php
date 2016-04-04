@@ -1,6 +1,6 @@
 <?php
 require "database/Database.php";
-require "user/User.php";
+//require "user/User.php";
 
 session_start();
 
