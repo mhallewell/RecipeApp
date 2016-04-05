@@ -103,7 +103,7 @@ img.mainBody{
   float:left;
   width:45%;
 }
-h1{
+#mainBody h1{
   font-family: 'Perpetua Titling MT', sans-serif;
   font-size: 40px;
   color: #000000;
@@ -112,7 +112,7 @@ h1{
   float:right;
   width:50%;
 }
-h2{
+#mainBody h2{
   font-family: 'Perpetua Titling MT', sans-serif;
   font-size: 30px;
   color: #000000;
@@ -121,7 +121,7 @@ h2{
   float:right;
   width:50%;
 }
-h3{
+#mainBody h3{
   font-family: 'Perpetua Titling MT', sans-serif;
   font-size: 20px;
   color: #000000;
@@ -159,5 +159,37 @@ h3{
   padding: .2em 1em;
 }
 #viewAllRecipesBody ul li a:hover{
+    color: #C0C0C0;
+}
+
+/*Profile Page Main Body*/
+#profileMainBody{
+  width: 50%;
+  margin: 0 auto;
+}
+#profileMainBody h1{
+  font-family: 'Perpetua Titling MT', sans-serif;
+  font-size: 40px;
+  color: #000000;
+  text-transform: uppercase;
+  font-weight: 400;
+  width:50%;
+}
+#profileMainBody h3{
+  font-family: 'Perpetua Titling MT', sans-serif;
+  font-size: 20px;
+  color: #000000;
+  text-transform: uppercase;
+  font-weight: 400;
+  width:50%;
+}
+#profileMainBody h3 a {
+  font-family: 'Perpetua Titling MT', sans-serif;
+  color: #000000;
+  font-weight: 400;
+  font-size: 20px;
+  text-decoration: none;
+}
+#profileMainBody h3 a:hover{
     color: #C0C0C0;
 }
