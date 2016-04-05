@@ -21,8 +21,6 @@ else
 {
 	if (!isset($_POST['recipeName'])
 	{
-		$recipe = $_SESSION['database']->selectRecipe($_GET['id']);
-
 		include "html/createRecipe.php";
 	}
 	else
