@@ -156,6 +156,25 @@ class Database
 	}
 
 	/*
+	Purpose: To allow for getting the total number of recipes a user has
+	*/
+	public function getNumberOfRecipes($userId)
+	{
+		$db = $this->connect();
+	
+		$query = "SELECT COUNT(*) AS `Count` FROM Recipes WHERE";
+		$query .= " userId=";
+		$query .= $db->escape_string($userId);
+		$query .= ";";
+
+		$result = $db->query($query);
+		$count = $result->fetch_assoc()['Count'];
+		$result->free;
+		
+		return $count;
+	}
+
+	/*
 	Purpose: To allow searching for recipes
 	*/
 	public function searchRecipes($search)
