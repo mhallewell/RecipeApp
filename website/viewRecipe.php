@@ -11,9 +11,6 @@ if (!isset($_SESSION['database']))
 	$_SESSION['database'] = new Database();
 }
 
-// Code to override login mechanism for testing
-$_SESSION["user"] = new User(0, "TestUser", "");
-
 // Check if the user is logged in
 if (!isset($_SESSION["user"]))
 {

@@ -13,7 +13,7 @@ if (!isset($_SESSION['database']))
 
 $user = $_SESSION['database']->createUser($_POST['userId'], $_POST['username']);
 
-$_SESSION['user'] = new User($user['userId'], $user['username']);
+$_SESSION['user'] = new User($user['userId'], $user['username'], $_POST['picture']);
 
 // TODO Redirect to profile.php
 //header("Location: profile.php");
