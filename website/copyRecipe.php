@@ -11,9 +11,6 @@ if (!isset($_SESSION['database']))
 	$_SESSION['database'] = new Database();
 }
 
-// Code to override login mechanism for testing
-$_SESSION["user"] = new User(0, "TestUser", "");
-
 // Check if the user is logged in
 if (!isset($_SESSION["user"]))
 {
@@ -22,10 +19,8 @@ if (!isset($_SESSION["user"]))
 }
 else
 {
-	// Get the url for redirect purposes
-	$url = parse_url($_SERVER["REQUEST_URI"]);
-	//var_dump($url);
 	$recipe = $_SESSION['database']->selectRecipe($_GET['id']);
+	
 	
 	// TODO Change to the correct main page
 	$_SESSION['database']->copyRecipe($_SESSION['user']->getUserId(), $recipe);

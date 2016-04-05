@@ -197,7 +197,6 @@ class Database
 		$query = "SELECT * FROM `Recipes` WHERE ";
 		$query .= "userId = ";
 		$query .= $db->escape_string($userId);
-		$query .= "'";
 		
 		$result = $db->query($query);
 		if ($result != null)
@@ -332,10 +331,10 @@ class Database
 			$query .= ");";
 
 			$result = $db->query($query);
-			
+
 			$recipe->setId($db->insert_id);
 
-			$this->insertIngredients($result, $recipe);
+			$this->insertIngredients($recipe);
 			$result->free;
 	
 			return $db->insert_id;
@@ -351,7 +350,7 @@ class Database
 	Parameters: $recipeId The id of the recipe to attach the ingredient to
 			$recipe The recipe to insert into the database
 	*/
-	public function insertIngredients($recipeId, $recipe)
+	public function insertIngredients($recipe)
 	{
 		if (get_class($recipe) == "Recipe")
 		{
@@ -365,7 +364,7 @@ class Database
 				$query .= "','";
 				$query .= $db->escape_string($ingredient->getQuantity());
 				$query .= "',";
-				$query .= $db->escape_string($recipeId);
+				$query .= $db->escape_string($recipe->getId());
 				$query .= ")";
 				$query .= ";";
 	
@@ -406,7 +405,7 @@ class Database
 		$result = $db->query($query);
 		$result->free();
 
-		return $this->insertIngredients($recipe->getId(), $recipe);
+		return $this->insertIngredients($recipe);
 	}	
 
 	public function copyRecipe($userId, $recipe)

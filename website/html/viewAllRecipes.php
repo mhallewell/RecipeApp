@@ -20,7 +20,7 @@
 			echo '<li><a href="/viewRecipe.php?id=';
 			echo $recipe->getId();
 			echo '">';
-			echo $recipe->getName();
+			echo strip_tags($recipe->getName());
 			echo '</a></li>';
 		}
  		?>

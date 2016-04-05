@@ -22,6 +22,7 @@ if (!isset($_SESSION["user"]))
 else
 {
 	// TODO Change to the correct main page
+	$recipe = $_SESSION['database']->selectRecipe(1);
 	include "html/main.php";
 }
 ?>

@@ -11,9 +11,6 @@ if (!isset($_SESSION['database']))
 	$_SESSION['database'] = new Database();
 }
 
-// Code to override login mechanism for testing
-$_SESSION["user"] = new User(0, "TestUser", "");
-
 // Check if the user is logged in
 if (!isset($_SESSION["user"]))
 {
@@ -22,7 +19,7 @@ if (!isset($_SESSION["user"]))
 }
 else
 {
-	if (!isset($_GET))
+	if (!isset($_GET['q']))
 	{
 		// TODO Change to the correct main page
 		$recipes = $_SESSION['database']->getRecipesByUserId($_SESSION['user']->getUserId());
