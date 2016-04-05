@@ -12,8 +12,8 @@
   </div>
   <div id="profileMainBody">
     <img class="profilePicture" src="../image/chicken.jpg"/>
-    <h1>Name</h1>
-    <h3>Number of Recipes: </h3>
+    <h1><?php echo $_SESSION["user"]->getName()?></h1>
+    <h3>Number of Recipes: <?php echo $numRecipes?></h3>
     <h3><a href="recipeList.php">View Recipe Book</a></h3>
   </div>
 
