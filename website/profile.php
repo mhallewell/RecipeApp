@@ -19,5 +19,5 @@ else
 {
 	// TODO Add in the profile generation
 	$numRecipes = $_SESSION['database']->getNumberOfRecipes($_SESSION['user']->getUserId());
-	include "html/profilepage.php";
+	include "html/profile.php";
 }
