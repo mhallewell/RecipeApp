@@ -19,9 +19,13 @@ if (!isset($_SESSION["user"]))
 }
 else
 {
-	if (!isset($_GET['q']))
+	if (!isset($_GET['q']) && !isset($_GET['viewMine']))
 	{
 		// TODO Change to the correct main page
+		$recipes = $_SESSION['database']->getAllRecipes();
+	}
+	else if (isset($_GET['viewMine']))
+	{
 		$recipes = $_SESSION['database']->getRecipesByUserId($_SESSION['user']->getUserId());
 	}
 	else if (isset($_GET['q']))

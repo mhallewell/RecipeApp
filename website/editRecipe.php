@@ -19,7 +19,7 @@ if (!isset($_SESSION["user"]))
 }
 else
 {
-	if (!isset($_POST['recipeId'])
+	if (!isset($_POST['recipeId']))
 	{
 		$recipe = $_SESSION['database']->selectRecipe($_GET['id']);
 
