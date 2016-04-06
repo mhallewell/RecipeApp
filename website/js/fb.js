@@ -23,27 +23,27 @@ function login()
 	{
 		if(response.status === 'connected')
 		{
-			document.getElementById('status').innerHTML = 'Connected';
+			console.log('Connected');
 			accessToken = response.authResponse.accessToken;
 			FB.api('/me', function(response) 
 			{
 				userData = response;
-				//document.getElementById('token').innerHTML = JSON.stringify(userData, null, 4);
 				FB.api(('/me/?fields=picture&type=large'), function(response) {
+					userData.picture = response.picture.data.url;
 					console.log(response);
-					document.getElementById('profile_picture').innerHTML = '<img src="' + response.picture.data.url +'"></img>';
+					//document.getElementById('profile_picture').innerHTML = '<img src="' + response.picture.data.url +'"></img>';
 				});
 
-				dbLogin(userData.name,userData.id);
+				dbLogin(userData.name,userData.id,userData.picture);
 			});
 		}
 		else if (response.status === 'not_authorized')
 		{
-			document.getElementById('status').innerHTML = 'not connected';
+			console.log('Not Connected');
 		}
 		else
 		{
-			document.getElementById('status').innerHTML = 'not connected at all';
+			console.log('Not Connected!');
 		}
 	})
 }

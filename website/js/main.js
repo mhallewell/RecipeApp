@@ -1,4 +1,4 @@
-function dbLogin(userName, userID) {
+function dbLogin(userName, userID,userPic) {
 	console.log(userName, userID);
 
 	$.ajax({
@@ -6,6 +6,7 @@ function dbLogin(userName, userID) {
 		data: {
 		   'userId': userID,
 		   'username': userName,
+		   'picture': userPic,
 		},
 		type: 'post',
 		success: function(output) {
