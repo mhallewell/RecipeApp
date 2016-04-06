@@ -9,8 +9,22 @@
 <body>
 
   <div id="header">
-
   </div>
-<p>Edit Recipe</p>
+<h2>Recipe Name</h2>
+<form><input type="text" name="recipeTitle" value="Recipe name here"></form>
+
+<h3>Ingredients</h3>
+<form class="chatForm">
+  <input type="text" name="Q1" value="Quantity">
+  <input type="text" name="I1" value="Ingredient"><br>
+  <input type="text" name="Q2" value="Quantity">
+  <input type="text" name="I3" value="Ingredient"><br>
+</form><br><br>
+
+<div id="directions">
+<h3>Directions</h3>
+<textarea rows="5" cols="80" id="TITLE"></textarea>
+</div>
+
 </body>
 </html>
