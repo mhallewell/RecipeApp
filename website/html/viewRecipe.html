@@ -15,11 +15,8 @@
 
   <div id="viewRecipeBody">
     <h2><?php echo strip_tags($recipe->getName());?></h2>
-		<?php
-			if($_SESSION["user"]-getUserId() != $recipe->getUserId()){
-				<a href="copyRecipe.php?id=<?php echo $recipe->getId(); ?>">+ Add to my Recipe Book</a>
-			}
-		?>
+    <!-- TODO add if statement to check whether they're looking at their recipe or all recipes -->
+    <a href="copyRecipe.php?id=<?php echo $recipe->getId(); ?>">+ Add to my Recipe Book</a>
     <div id="ingredients"><h3>Ingredients:<ul>
 	<?php foreach($recipe->getIngredients() as $ingredient)
 		{
