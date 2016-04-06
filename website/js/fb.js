@@ -34,7 +34,7 @@ function login()
 					document.getElementById('profile_picture').innerHTML = '<img src="' + response.picture.data.url +'"></img>';
 				});
 
-				//dbLogin(userData.name,userData.id);
+				dbLogin(userData.name,userData.id);
 			});
 		}
 		else if (response.status === 'not_authorized')
