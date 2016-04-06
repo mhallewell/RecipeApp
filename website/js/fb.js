@@ -23,17 +23,18 @@ function login()
 	{
 		if(response.status === 'connected')
 		{
-			//document.getElementById('status').innerHTML = 'Connected';
+			document.getElementById('status').innerHTML = 'Connected';
 			accessToken = response.authResponse.accessToken;
 			FB.api('/me', function(response) 
 			{
 				userData = response;
 				//document.getElementById('token').innerHTML = JSON.stringify(userData, null, 4);
-				FB.api(('/me/' + userData.id + '?fields=cover'), function(response) {
-					userCover = response.cover;
-					document.createElement('img').appendChild += JSON.stringify(userCover, null, 4);
+				FB.api(('/me/?fields=picture&type=large'), function(response) {
+					console.log(response);
+					document.getElementById('profile_picture').innerHTML = '<img src="' + response.picture.data.url +'"></img>';
 				});
-				dbLogin(userData.name,userData.id);
+
+				//dbLogin(userData.name,userData.id);
 			});
 		}
 		else if (response.status === 'not_authorized')
@@ -45,4 +46,24 @@ function login()
 			document.getElementById('status').innerHTML = 'not connected at all';
 		}
 	})
+}
+
+function FB_Logout(){
+	$.ajax({
+		url: 'logout.php',
+		data: {},
+		type: 'GET',
+		success: function(output) {
+			FB.logout(function(response){
+			
+			});
+			window.location.href = "index.php";
+		},
+		failure: function(output) {
+			FB.logout(function(response){
+			
+			});
+			window.location.href = "index.php";
+		}
+	});
 }

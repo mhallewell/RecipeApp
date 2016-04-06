@@ -14,6 +14,7 @@
 		<div id="header"></div>
 		<div id="fb-root"></div>
 		<div id="status"></div>
+		<div id="profile_picture"></div>
 		<div> <button onclick="login()">Facebook Login</button> </div>
 		<p id="token"></p>
 	<!--<div class="img-holder">
