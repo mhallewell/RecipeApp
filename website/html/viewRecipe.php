@@ -16,11 +16,15 @@
   <div id="viewRecipeBody">
     <h2><?php echo strip_tags($recipe->getName());?></h2>
 		<?php
-			if($_SESSION["user"]-getUserId() != $recipe->getUserId()){
-				<a href="copyRecipe.php?id=<?php echo $recipe->getId(); ?>">+ Add to my Recipe Book</a>
+			if($_SESSION["user"]->getUserId() != $recipe->getUserId()){
+				echo '<a href="copyRecipe.php?id=';
+				echo $recipe->getId(); 
+				echo '">+ Add to my Recipe Book</a>';
 			}
 			else{
-				<a href="editRecipe.php?id=<?php echo $recipe->getId(); ?>">Edit Recipe</a>
+				echo '<a href="editRecipe.php?id=';
+				echo $recipe->getId(); 
+				echo '">+ Edit Recipe</a>';
 			}
 		?>
     <div id="ingredients"><h3>Ingredients:<ul>
