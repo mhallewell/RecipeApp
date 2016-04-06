@@ -7,6 +7,7 @@ class Recipe
 	private $description;
 	private $instructions;
 	private $ingredients;
+	private $userId;
 
 	public function __constructor()
 	{
@@ -22,6 +23,17 @@ class Recipe
 	public function setId($id)
 	{
 		$this->recipeId = $id;
+	}
+
+	public function getUserId()
+	{
+		return $this->userId;
+	}	
+
+	// Used by database to insert the new id into the recipe
+	public function setUserId($id)
+	{
+		$this->userId = $id;
 	}
 
 	public function setName($name)

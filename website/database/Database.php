@@ -194,6 +194,7 @@ class Database
 			{
 				$recipes[$index] = new Recipe();
 				$recipes[$index]->setId($row['recipeId']);
+				$recipes[$index]->setUserId($row['userId']);
 				$recipes[$index]->setName($row['recipename']);
 				$recipes[$index]->setDescription($row['description']);
 				$recipes[$index]->setInstructions($row['instructions']);
@@ -225,6 +226,7 @@ class Database
 			{
 				$recipes[$index] = new Recipe();
 				$recipes[$index]->setId($row['recipeId']);
+				$recipes[$index]->setUserId($row['userId']);
 				$recipes[$index]->setName($row['recipename']);
 				$recipes[$index]->setDescription($row['description']);
 				$recipes[$index]->setInstructions($row['instructions']);
@@ -254,6 +256,7 @@ class Database
 			{
 				$recipes[$index] = new Recipe();
 				$recipes[$index]->setId($row['recipeId']);
+				$recipes[$index]->setUserId($row['userId']);
 				$recipes[$index]->setName($row['recipename']);
 				$recipes[$index]->setDescription($row['description']);
 				$recipes[$index]->setInstructions($row['instructions']);
@@ -287,6 +290,7 @@ class Database
 		$recipe = new Recipe();
 
 		$recipe->setId($row['recipeId']);
+		$recipe->setUserId($row['userId']);
 		$recipe->setName($row['recipename']);
 		$recipe->setDescription($row['description']);
 		$recipe->setInstructions($row['instructions']);
