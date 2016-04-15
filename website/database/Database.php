@@ -87,7 +87,6 @@ class Database
 		$query .= ",";
 		$query .= "'" . $db->escape_string($name) . "'";
 		$query .= ");";
-		echo $query;
 		
 		$result = $db->query($query);
 		
@@ -100,11 +99,38 @@ class Database
 		else
 			echo ("User already exists <br />");
 		*/
+		// Create a calendar if the user was successfully created
+		if ($result)
+		{
+			$this->createCalendar($userId);
+		}
+
 		if ($result != null)
 		{
 			$result->free();
 		}
+
 		return $this->login($userId);		
+	}
+
+	/*
+	Purpose: To create a calendar for the user
+	Parameters: The userId to create the calendar for
+	*/
+	public function createCalendar($userId)
+	{
+		$db = $this->connect();
+		
+		$query = "CREATE TABLE IF NOT EXISTS `";
+		$query .= $db->escape_string($userId);
+		$query .= "Calendar` (";
+		$query .= "`itemId` int(11) NOT NULL AUTO_INCREMENT,";
+  		$query .= "`recipeId` int(11) NOT NULL,";
+  		$query .= "`date` date NOT NULL,";
+  		$query .= "PRIMARY KEY (`itemId`)";
+		$query .= ") ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+
+		$result = $db->query($query);
 	}
 
 	/*
@@ -435,6 +461,48 @@ class Database
 	{
 		return $this->createRecipe($userId, $recipe);
 	}
-			
+		
+
+	/*
+	Purpose: To get the recipes associated with a given date
+	Parameters: The userId to check
+			The date in the format YYYY-MM-DD
+	*/
+	public function getDate($userId, $date)
+	{
+		$db = $this->connect();
+		
+		$query = "SELECT * FROM ";
+		$query .= $db->escape_string($userId);
+		$query .= "Calendar ";
+		$query .= "LEFT JOIN (Recipes) ON (";
+		$query .= $db->escape_string($userId);
+		$query .= "Calendar.recipeId=";
+		$query .= "Recipes.recipeId)";
+		$query .= " WHERE `date` = ";
+		$query .= $db->escape_string($date);
+		$query .= ";";
+
+		echo $query;
+		
+		$result = $db->query($query);
+		if ($result != null)
+		{
+			$index = 0;
+			while ($row = $result->fetch_assoc())
+			{
+				$recipes[$index] = new Recipe();
+				$recipes[$index]->setId($row['recipeId']);
+				$recipes[$index]->setUserId($row['userId']);
+				$recipes[$index]->setName($row['recipename']);
+				$recipes[$index]->setDescription($row['description']);
+				$recipes[$index]->setInstructions($row['instructions']);
+				$this->getIngredients($recipes[$index]);
+				$index += 1;
+			}
+			$result->free();
+		}
+		return $recipes;
+	}
 }
 ?>
