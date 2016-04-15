@@ -219,3 +219,12 @@ img.mainBody{
 #viewRecipeBody a:hover{
     color: #C0C0C0;
 }
+#list {
+   display: none;
+ }
+
+ #list.open {
+   display: block;
+ }
+
+@media print { .hide, .show { display: none; } }
