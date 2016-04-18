@@ -99,3 +99,4 @@ class Recipe
 		$this->ingredients = $ingredients;
 	}
 }
+?>

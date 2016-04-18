@@ -2,6 +2,7 @@
 require_once("recipe/Recipe.php");
 require_once("recipe/Ingredient.php");
 require_once("user/User.php");
+require_once("recipe/Date.php");
 
 class Database
 {
@@ -472,6 +473,9 @@ class Database
 	{
 		$db = $this->connect();
 		
+		$calDate = new CalDate();
+		$calDate->setDate($date);
+		
 		$query = "SELECT * FROM ";
 		$query .= $db->escape_string($userId);
 		$query .= "Calendar ";
@@ -479,11 +483,9 @@ class Database
 		$query .= $db->escape_string($userId);
 		$query .= "Calendar.recipeId=";
 		$query .= "Recipes.recipeId)";
-		$query .= " WHERE `date` = ";
+		$query .= " WHERE `date` = '";
 		$query .= $db->escape_string($date);
-		$query .= ";";
-
-		echo $query;
+		$query .= "';";
 		
 		$result = $db->query($query);
 		if ($result != null)
@@ -500,9 +502,118 @@ class Database
 				$this->getIngredients($recipes[$index]);
 				$index += 1;
 			}
+			$calDate->setRecipes($recipes);
 			$result->free();
 		}
-		return $recipes;
+		return $calDate;
+	}
+
+	/*
+	Purpose: To get the recipes associated with a given date
+	Parameters: The userId to check
+			The date in the format YYYY-MM-DD
+	*/
+	public function addRecipeToDate($userId, $date, $recipeId)
+	{
+		$db = $this->connect();
+		
+		$query = "INSERT INTO ";
+		$query .= $db->escape_string($userId);
+		$query .= "Calendar ";
+		$query .= " (recipeId, date) VALUES ('";
+		$query .= $db->escape_string($recipeId);
+		$query .= "',";
+		$query .= "'" . $db->escape_string($date) . "'";
+		$query .= ");";
+		
+		$result = $db->query($query);
+	}
+
+	/*
+	Purpose: To get the recipes associated with a given date
+	Parameters: The userId to check
+			The date in the format YYYY-MM-DD
+			The recipeId of the recipe to remove
+	*/
+	public function removeRecipeFromDate($userId, $date, $recipeId)
+	{
+		$db = $this->connect();
+		
+		$query = "DELETE FROM ";
+		$query .= $db->escape_string($userId);
+		$query .= "Calendar ";
+		$query .= " WHERE recipeId = '";
+		$query .= $db->escape_string($recipeId);
+		$query .= "'";
+		$query .= " AND date = '" . $db->escape_string($date) . "'";
+		$query .= " LIMIT 1;";
+		
+		$result = $db->query($query);
+	}
+
+	/*
+	Purpose: To get the recipes associated with a given date
+	Parameters: The userId to check
+			The date in the format YYYY-MM-DD
+			The end date in the format YYYY-MM-DD
+	*/
+	public function getDateRange($userId, $startDate, $endDate)
+	{
+		$db = $this->connect();
+
+		// Create an array of all the dates in the date range
+		$begin = new DateTime($startDate);
+		$end = new DateTime($endDate);
+		$end = $end->modify('+1 day');
+
+		$interval = DateInterval::createFromDateString('1 day');
+		$period = new DatePeriod($begin, $interval, $end);
+		foreach ($period as $date)
+		{
+			$dates[$date->format("Y-m-d")] = new CalDate();
+			$dates[$date->format("Y-m-d")]->setDate($date->format("Y-m-d"));
+		}
+		
+		$query = "SELECT * FROM ";
+		$query .= $db->escape_string($userId);
+		$query .= "Calendar ";
+		$query .= "LEFT JOIN (Recipes) ON (";
+		$query .= $db->escape_string($userId);
+		$query .= "Calendar.recipeId=";
+		$query .= "Recipes.recipeId)";
+		$query .= " WHERE `date` between '";
+		$query .= $db->escape_string($startDate);
+		$query .= "' AND '";
+		$query .= $db->escape_string($endDate);
+		$query .= "' ORDER BY `date` DESC";
+		$query .= ";";
+		
+		$result = $db->query($query);
+		if ($result != null)
+		{
+			$index = 0;
+			while ($row = $result->fetch_assoc())
+			{
+				$recipes[$row['date']][$index] = new Recipe();
+				$recipes[$row['date']][$index]->setId($row['recipeId']);
+				$recipes[$row['date']][$index]->setUserId($row['userId']);
+				$recipes[$row['date']][$index]->setName($row['recipename']);
+				$recipes[$row['date']][$index]->setDescription($row['description']);
+				$recipes[$row['date']][$index]->setInstructions($row['instructions']);
+				$this->getIngredients($recipes[$row['date']][$index]);
+				$index += 1;
+			}
+			$result->free();
+			
+			foreach ($period as $date)
+			{
+				if (isset($recipes[$date->format("Y-m-d")]))
+				{
+					$dates[$date->format("Y-m-d")]->setRecipes($recipes[$date->format("Y-m-d")]);
+				}
+			}
+		}
+		return $dates;
 	}
 }
 ?>
