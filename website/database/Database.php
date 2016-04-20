@@ -491,6 +491,7 @@ class Database
 		if ($result != null)
 		{
 			$index = 0;
+			$recipes = null;
 			while ($row = $result->fetch_assoc())
 			{
 				$recipes[$index] = new Recipe();
@@ -614,6 +615,87 @@ class Database
 			}
 		}
 		return $dates;
+	}
+
+	public function copyTimeFrame($userId, $fromStartDate, $toStartDate, $numDays)
+	{
+		$curFromDate = new DateTime($fromStartDate);
+		$curToDate = new DateTime($toStartDate);
+		$interval = date_interval_create_from_date_string("1 day");
+		for ($i = 0; $i < $numDays; $i += 1)
+		{
+			
+			$curFromDate->add($interval);
+			$fromDate = $this->getDate($userId, $curFromDate->format("Y-m-d"));
+			$curToDate->add($interval);
+			if ($fromDate != null && $fromDate->getRecipes() != null)
+			{
+				foreach ($fromDate->getRecipes() as $recipe)
+				{
+					$this->addRecipeToDate($userId, $curToDate->format("Y-m-d"), $recipe->getId());	
+				}
+			}
+		}
+	} 
+
+	public function selectIngredients($recipeIds)
+	{
+		$db = $this->connect();
+		$ingredients = null;
+		// TODO Write function that gets the ingredients for a list of recipe ids
+		$query = "SELECT * FROM `Ingredients`";
+		$query .= " WHERE ";
+		foreach ($recipeIds as $id)
+		{
+			$query .= "RecipeId = ";
+			$query .= $db->escape_string($id);
+			$query .= " OR ";
+		}
+		// Added so the query can end with an extra or
+		$query .= " RecipeId = -1;";
+
+		$result = $db->query($query);
+		
+		if ($result != null)
+		{
+			while ($row = $result->fetch_assoc())
+			{
+				$ingredient = new Ingredient();
+				$ingredient->setId($row['ingredientId']);
+				$ingredient->setName($row['name']);
+				$ingredient->setQuantity($row['quantity']);
+				$ingredients[] = $ingredient;
+			}
+		}
+		return $ingredients;
+	}
+
+	public function selectTimeFrame($userId, $startDate, $endDate)
+	{
+		$db = $this->connect();
+		$recipeIds = null;
+
+		$query = "SELECT `recipeId` FROM ";
+		$query .= $db->escape_string($userId);
+		$query .= "Calendar ";
+		$query .= " WHERE `date` between '";
+		$query .= $db->escape_string($startDate);
+		$query .= "' AND '";
+		$query .= $db->escape_string($endDate);
+		$query .= "' ORDER BY `date` DESC";
+		$query .= ";";
+		
+		$result = $db->query($query);
+		
+		if ($result != null)
+		{
+			while ($row = $result->fetch_assoc())
+			{
+				$recipeIds[] = $row['recipeId'];
+			}
+		} 
+		
+		return $this->selectIngredients($recipeIds);
 	}
 }
 ?>
