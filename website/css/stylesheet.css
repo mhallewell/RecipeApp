@@ -217,5 +217,47 @@ img.mainBody{
   text-decoration: none;
 }
 #viewRecipeBody a:hover{
-    color: #C0C0C0;
+  color: #C0C0C0;
+}
+
+/*Calendar*/
+table {
+  border: none;
+  border-collapse: collapse;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+  color: #000000;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-decoration: none;
+  empty-cells:show;
+}
+table td {
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+}
+table td:first-child {
+  border-left: none;
+}
+table td:last-child {
+  border-right: none;
+}
+td{
+  width: 14%;
+  height:100%;
+}
+table th {
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+}
+table th:first-child {
+  border-left: none;
+}
+table th:last-child {
+  border-right: none;
+}
+th {
+  width:14%;
+  height: 50px;
 }
