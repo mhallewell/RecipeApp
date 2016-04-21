@@ -19,7 +19,7 @@ if (!isset($_SESSION["user"]))
 }
 else
 {
-	if (!isset($_POST['recipeName'])
+	if (!isset($_POST['recipeName']))
 	{
 		include "html/createRecipe.php";
 	}
@@ -37,9 +37,9 @@ else
 			$recipe->addIngredient($ingredient);
 		}
 		
-		$recipe = $_SESSION['database']->createRecipe($recipe);
+		$recipeId = $_SESSION['database']->createRecipe($_SESSION['user']->getUserId(),$recipe);
 
-		header("Location: viewRecipe.php?id=" . $recipe->getId());
+		header("Location: viewRecipe.php?id=" . $recipeId);
 		die(); // End running this php after the redirect
 	}
 }

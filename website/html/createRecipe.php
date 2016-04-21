@@ -11,20 +11,29 @@
   <div id="header">
   </div>
 <h2>Recipe Name</h2>
-<form><input type="text" name="recipeTitle" value="Recipe name here"></form>
+<form action="createRecipe.php" method="post">
+<input type="text" name="recipeName" value="Recipe name here">
 
 <h3>Ingredients</h3>
-<form class="chatForm">
-  <input type="text" name="Q1" value="Quantity">
-  <input type="text" name="I1" value="Ingredient"><br>
-  <input type="text" name="Q2" value="Quantity">
-  <input type="text" name="I3" value="Ingredient"><br>
-</form><br><br>
+<div class="chatForm">
+  <input type="text" name="ingredients[1][quantity]" value="Quantity">
+  <input type="text" name="ingredients[1][name]" value="Ingredient"><br>
+  <input type="text" name="ingredients[2][quantity]" value="Quantity">
+  <input type="text" name="ingredients[2][name]" value="Ingredient"><br>
+</div><br><br>
 
 <div id="directions">
 <h3>Directions</h3>
-<textarea rows="5" cols="80" id="TITLE"></textarea>
+<textarea rows="5" cols="80" id="TITLE" name="directions"></textarea>
 </div>
+
+<div id="description">
+<h3>Description</h3>
+<textarea rows="5" cols="80" id="TITLE" name="description"></textarea>
+</div>
+
+<input type="submit" value="Submit">
+</form>
 
 </body>
 </html>

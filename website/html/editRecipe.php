@@ -11,20 +11,36 @@
   <div id="header">
   </div>
 <h2>Recipe Name</h2>
-<form><input type="text" name="recipeTitle" value="Recipe name here"></form>
+<form action="createRecipe.php" method="post">
+<input type="text" name="recipeName" value="<?php echo $recipe->getName();?>">
 
 <h3>Ingredients</h3>
-<form class="chatForm">
-  <input type="text" name="Q1" value="Quantity">
-  <input type="text" name="I1" value="Ingredient"><br>
-  <input type="text" name="Q2" value="Quantity">
-  <input type="text" name="I3" value="Ingredient"><br>
-</form><br><br>
+<div class="chatForm">
+<?php
+	$count = 1;
+	foreach ($recipe->getIngredients() as $ingredient)
+	{
+	?>
+  <input type="text" name="ingredients[<?php echo $count; ?>][quantity]" value="<?php echo $ingredient->getQuantity();?>">
+  <input type="text" name="ingredients[<?php echo $count; ?>][name]" value="<?php echo $ingredient->getName();?>"><br>
+	<?php
+		$count += 1;
+	}
+	?>
+</div><br><br>
 
 <div id="directions">
 <h3>Directions</h3>
-<textarea rows="5" cols="80" id="TITLE"></textarea>
+<textarea rows="5" cols="80" id="TITLE" name="directions"><?php echo $recipe->getInstructions(); ?></textarea>
 </div>
+
+<div id="description">
+<h3>Description</h3>
+<textarea rows="5" cols="80" id="TITLE" name="description"><?php echo $recipe->getDescription();?></textarea>
+</div>
+
+<input type="submit" value="Submit">
+</form>
 
 </body>
 </html>
