@@ -15,11 +15,15 @@
 <input type="text" name="recipeName" value="Recipe name here">
 
 <h3>Ingredients</h3>
+<div id="Amount"></div>
+<div id="ingrediendButtons">
+	<button onclick="addIngredient()">Add Ingredient</button>
+	<button onclick="removeIngredient()">Remove Ingredient</button>
+</div><br>
 <div class="chatForm">
   <input type="text" name="ingredients[1][quantity]" value="Quantity">
   <input type="text" name="ingredients[1][name]" value="Ingredient"><br>
-  <input type="text" name="ingredients[2][quantity]" value="Quantity">
-  <input type="text" name="ingredients[2][name]" value="Ingredient"><br>
+	<div id="Add"></div>
 </div><br><br>
 
 <div id="directions">
