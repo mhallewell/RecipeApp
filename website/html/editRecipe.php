@@ -26,6 +26,7 @@
 	<?php
 		$count += 1;
 	}
+	echo '<input type="hidden" id="numRecipes" value="'.($count-1).'">';
 	?>
 </div><br><br>
 
