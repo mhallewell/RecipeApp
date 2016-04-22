@@ -2,14 +2,14 @@
 
 <html>
 <head>
-      <link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-      <script src="../js/header.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="../js/header.js"></script>
 </head>
 <body>
   <div id="header">
   </div>
-
+  <!-- script for toggle functionality-->
   <script>
   $(function(){
 
@@ -19,45 +19,80 @@
       className = "open";
 
       if ($object) {
+        console.log('Object exists');
         if ($object.hasClass(className)) {
+          console.log('Removing open class');
           $object.removeClass(className)
-          $(this).text("Shopping List:");
+          // $(this).text("Shopping List:");
         } else {
+          console.log('Adding open class');
           $object.addClass(className)
-          $(this).text("Shopping List:");
+          // $(this).text("Shopping List:");
         }
       }
     });
   });
   </script>
+    <!-- print button and functionality-->
+  <style type="text/css" media="print">
+  .printbutton {
+    visibility: hidden;
+    display: none;
+  }
+  @media print{
+  #header{ display:none; }
+}
+  </style>
 
-  <p>Shopping List</p>
+  <!--Shopping list list-->
+  <p>Shopping List Dates</p>
   <div>
-      <a href="#" class="hide" data-toggle="#list">1 Day List</a>
-      <ol id="list">
-          <li>food</li>
-          <li>food</li>
-          <li>food</li>
-      </ol>
+    <a href="#" class="hide" data-toggle="#listDay">1 Day List</a>
+    <ol id="listDay">
+      <li>food</li>
+      <li>food</li>
+      <li>food</li>
+    </ol>
+    <script>
+    document.write("<input type='button' " +
+    "onClick='window.print()' " +
+    "class='printbutton' " +
+    "value='Print This Page'/>");
+    </script>
   </div>
   <div>
-      <a href="#" class="hide" data-toggle="#list">1 Week List</a>
-      <ol id="list">
-          <li>food</li>
-          <li>food</li>
-          <li>food</li>
-      </ol>
+    <a href="#" class="hide" data-toggle="#listWeek">1 Week List</a>
+    <ol id="listWeek">
+      <li>foody</li>
+      <li>foody</li>
+      <li>foody</li>
+    </ol>
+
+    <script>
+    document.write("<input type='button' " +
+    "onClick='window.print()' " +
+    "class='printbutton' " +
+    "value='Print This Page'/>");
+    </script>
+
   </div>
   <div>
-      <a href="#" class="hide" data-toggle="#list">1 Month List</a>
-      <ol id="list">
-          <li>food</li>
-          <li>food</li>
-          <li>food</li>
-      </ol>
+    <a href="#" class="hide" data-toggle="#listMonth">1 Month List</a>
+    <ol id="listMonth">
+      <li>foodyy</li>
+      <li>foodyy</li>
+      <li>foodyy</li>
+    </ol>
+
+    <script>
+    document.write("<input type='button' " +
+    "onClick='window.print()' " +
+    "class='printbutton' " +
+    "value='Print This Page'/>");
+    </script>
+
   </div>
 
-  <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 
 </body>
 </html>

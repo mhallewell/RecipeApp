@@ -220,11 +220,11 @@ img.mainBody{
   color: #C0C0C0;
 }
 
-#list {
+#listDay, #listWeek, #listMonth {
    display: none;
  }
 
- #list.open {
+ #listDay.open, #listWeek.open, #listMonth.open {
    display: block;
  }
 
