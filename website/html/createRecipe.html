@@ -20,10 +20,14 @@
 	<button onclick="addIngredient()">Add Ingredient</button>
 	<button onclick="removeIngredient()">Remove Ingredient</button>
 </div><br>
-<form class="chatForm">
-  <input type="text" name="Q1" value="Quantity">
-  <input type="text" name="I1" value="Ingredient"><br>
-	<div id="Add"> </div>
+<div class="chatForm">
+	<div id="innerChatForm">
+		<div id="F0">
+			<input type="text" name="ingredients[0][quantity]" value="Quantity">
+			<input type="text" name="ingredients[0][name]" value="Ingredient">
+			<br>
+		</div>
+	</div>
 </form>
 
 

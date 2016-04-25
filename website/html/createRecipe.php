@@ -22,10 +22,14 @@
 	<button onclick="removeIngredient()">Remove Ingredient</button>
 </div><br>
 <div class="chatForm">
-  <input type="text" name="ingredients[1][quantity]" value="Quantity">
-  <input type="text" name="ingredients[1][name]" value="Ingredient"><br>
-	<div id="Add"></div>
-</div><br><br>
+	<div id="innerChatForm">
+		<div id="F0">
+			<input type="text" name="ingredients[0][quantity]" value="Quantity">
+			<input type="text" name="ingredients[0][name]" value="Ingredient">
+			<br>
+		</div>
+	</div>
+</div><br>
 
 <div id="directions">
 <h3>Directions</h3>

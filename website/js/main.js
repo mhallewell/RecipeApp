@@ -16,18 +16,50 @@ function dbLogin(userName, userID,userPic) {
 }
 
 var numOfIngredients = 1;
+var ingredientStorage = [];
+
 function addIngredient(){
-	numOfIngredients += 1;
-	document.getElementById('Add').innerHTML = '';
-	for(var x = 0; x < numOfIngredients-1; x++) {
-		document.getElementById('Add').innerHTML += '<input type="text" name="ingredients['+x+'][quantity]" value="Quantity"> <input type="text" name="ingredients['+x+'][name]" value="Ingredient"><br>';
+	form = document.getElementById('innerChatForm');
+	for(var x = 0; x < numOfIngredients; x++) {
+		var current = document.getElementById('F'+x);
+		if(current != null)ingredientStorage.push(current.getElementsByTagName('input'));
 	}
-	document.getElementById("Amount").innerHTML = '<input type="hidden" id="numRecipes" value="'+numOfIngredients+'">';
+	form.innerHTML = '';
+	for(var x = 0; x <= numOfIngredients; x++) {
+		if(ingredientStorage[x] != null)
+			form.innerHTML += '<div id="F' + x
+					+ '"> <input type="text" name="ingredients[' + x
+					+ '][quantity]" value="' 		     + ingredientStorage[x][0].value
+					+ '"> <input type="text" name="ingredients[' + x
+					+ '][name]" value="' 			     + ingredientStorage[x][1].value
+					+ '"> <br> </div>';
+		else
+			form.innerHTML += '<div id="F' 								 + x
+					+ '"> <input type="text" name="ingredients[' 				 + x
+					+ '][quantity]" value="Quantity"> <input type="text" name="ingredients[' + x
+					+ '][name]" value="Ingredient"> <br> </div>';
+
+	}
+	ingredientStorage = [];
+	numOfIngredients+=1;
 }
 
 function removeIngredient(){
-	numOfIngredients -= 2;
-	addIngredient();
-	if(numOfIngredients < 1)
-		numOfIngredients = 1;
+	numOfIngredients-=1;
+	form = document.getElementById('innerChatForm');
+	for(var x = 0; x < numOfIngredients; x++) {
+		var current = document.getElementById('F'+x);
+		if(current != null)ingredientStorage.push(current.getElementsByTagName('input'));
+	}
+	form.innerHTML = '';
+	for(var x = 0; x <= numOfIngredients; x++) {
+		if(ingredientStorage[x] != null)
+			form.innerHTML += '<div id="F' + x
+					+ '"> <input type="text" name="ingredients[' + x
+					+ '][quantity]" value="' 		     + ingredientStorage[x][0].value
+					+ '"> <input type="text" name="ingredients[' + x
+					+ '][name]" value="' 			     + ingredientStorage[x][1].value
+					+ '"> <br> </div>';
+	}
+	ingredientStorage = [];
 }
