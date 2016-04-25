@@ -16,15 +16,22 @@
     <tr>
 	<?php
 	$curDate = clone $startDate;
+	$prevWeek = clone $startDate;
+	$nextWeek = clone $startDate;
+	$prevWeek->modify('-7 days');
+	$nextWeek->modify('+7 days');
 	for($i = 0; $i < 7; ++$i)
 	{
-      if(i==1){
-        echo '<div class="navigateLeft"><a href="navigateLeft.php"><</a></div>';
-        echo '<th class="tg-yw4l">'.$curDate->format('m-d-Y').'</th>';
+      if($i==0){
+	echo '<th class="tg-yw4l">';
+        echo '<div class="navigateLeft"><a href="viewWeekCalendar.php?startDate='.$prevWeek->format('Y-m-d');
+	echo '"><</a></div>';
+        echo $curDate->format('m-d-Y').'</th>';
       }
-      else if(i==7){
-        echo '<th class="tg-yw4l">'.$curDate->format('m-d-Y').'</th>';
-        echo '<div class="navigateRight"><a href="navigateRight.php">></a></div>';
+      else if($i==6){
+        echo '<th class="tg-yw4l">'.$curDate->format('m-d-Y');
+        echo '<div class="navigateRight"><a href="viewWeekCalendar.php?startDate='.$nextWeek->format('Y-m-d');
+	echo '">></a></div>'.'</th>';
       }
       else{
       	echo '<th class="tg-yw4l">'.$curDate->format('m-d-Y').'</th>';

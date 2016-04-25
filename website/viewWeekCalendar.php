@@ -19,8 +19,15 @@ if (!isset($_SESSION["user"]))
 }
 else
 {
-	$startDate = new DateTime();
-	$endDate = new DateTime();
+	if (isset($_GET['startDate']))
+	{
+		$startDate = new DateTime($_GET['startDate']);
+	}
+	else
+	{
+		$startDate = new DateTime();
+	}
+	$endDate = clone $startDate;
 	$endDate->modify('+7 days');
 	$calDates = $_SESSION['database']->getDateRange($_SESSION["user"]->getUserId(), $startDate->format("Y-m-d"), $endDate->format("Y-m-d"));
 	include "html/calendar.php";
