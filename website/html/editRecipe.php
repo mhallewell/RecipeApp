@@ -16,7 +16,7 @@
 <input type="text" name="recipeName" value="<?php echo $recipe->getName();?>">
 
 <h3>Ingredients</h3>
-<div id="ingrediendButtons">
+<div id="ingredientButtons">
 	<a href="javascript:void(0)" onclick="addIngredient()">Add Ingredient</a>
 	<a href="javascript:void(0)" onclick="removeIngredient()">Remove Ingredient</a>
 </div><br>
