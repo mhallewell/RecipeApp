@@ -28,7 +28,7 @@ else
 	$endDate->modify("+7 days");
 	$weekIngredients = $_SESSION['database']->selectTimeFrame($_SESSION['user']->getUserId(), $startDate->format("Y-m-d"), $endDate->format("Y-m-d"));
 	$endDate = clone $startDate;
-	$endDate->modify("+1 week");
+	$endDate->modify("+1 month");
 	$monthIngredients = $_SESSION['database']->selectTimeFrame($_SESSION['user']->getUserId(), $startDate->format("Y-m-d"), $endDate->format("Y-m-d"));
 
 	include "html/shoppinglist.php";

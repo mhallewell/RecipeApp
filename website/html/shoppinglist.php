@@ -53,7 +53,8 @@
 		foreach ($dayIngredients as $ingredient)
 		{
 			echo '<li>'.strip_tags($ingredient->getName()).'&nbsp;';
-			echo strip_tags($ingredient->getQuantity()).'</li>';
+			//echo strip_tags($ingredient->getQuantity());
+			echo '</li>';
 		}
 	?>
     </ol>
@@ -71,7 +72,8 @@
 		foreach ($weekIngredients as $ingredient)
 		{
 			echo '<li>'.strip_tags($ingredient->getName()).'&nbsp;';
-			echo strip_tags($ingredient->getQuantity()).'</li>';
+			//echo strip_tags($ingredient->getQuantity());
+			echo '</li>';
 		}
 	?>
     </ol>
@@ -91,7 +93,8 @@
 		foreach ($monthIngredients as $ingredient)
 		{
 			echo '<li>'.strip_tags($ingredient->getName()).'&nbsp;';
-			echo strip_tags($ingredient->getQuantity()).'</li>';
+			//echo strip_tags($ingredient->getQuantity());
+			echo '</li>';
 		}
 	?>
     </ol>
