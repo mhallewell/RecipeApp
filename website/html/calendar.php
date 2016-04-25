@@ -26,7 +26,7 @@
     <tr>
 	<?php
 		$interval = date_interval_create_from_date_string("1 day");
-		$curDate = $startDate;
+		$curDate = clone $startDate;
 		for($i = 0; $i < 7; ++$i)
 		{
       			?>
