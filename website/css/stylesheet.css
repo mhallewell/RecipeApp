@@ -231,11 +231,33 @@ img.mainBody{
 @media print { .hide, .show { display: none; } }
 
 /*Calendar*/
+.navigateLeft a{
+  position:absolute;
+  width: 20px;
+  left: 0;
+  color: #fff;
+  text-decoration: none;
+}
+.navigateLeft a:hover{
+  color: #C0C0C0;
+}
+.navigateRight a{
+  position:absolute;
+  width: 20px;
+  top: 9%;
+  right: 0;
+  color: #fff;
+  text-decoration: none;
+}
+.navigateRight a:hover{
+  color: #C0C0C0;
+}
 .tg  {
   width: 100%;
   border-collapse:collapse;
   border-spacing:0;
   border-color:#aaa;
+  position:relative;
 }
 .tg td{
   font-family: 'Montserrat', sans-serif;
@@ -280,13 +302,11 @@ img.mainBody{
 .weekCalFixed{
   position:relative;
 }
-
 .removeButton{
   position:absolute;
   width: 10px;
   right: 0;
 }
-
 .removeButtonImage {
   width: 100%;
 }

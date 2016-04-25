@@ -8,26 +8,19 @@
 <body>
   <table class="tg">
     <tr>
-      <th class="tg-yw4l">Wednesday</th>
+      <th class="tg-yw4l"><div class="navigateLeft"><a href="navigateLeft.php"><</a></div>Wednesday</th>
       <th class="tg-yw4l">Thursday</th>
       <th class="tg-yw4l">Friday</th>
       <th class="tg-yw4l">Saturday</th>
       <th class="tg-yw4l">Sunday</th>
       <th class="tg-yw4l">Monday</th>
-      <th class="tg-yw4l">Tuesday</th>
+      <th class="tg-yw4l">Tuesday<div class="navigateRight"><a href="navigateRight.php">></a></div></th>
     </tr>
     <tr>
-	<?php
-		$interval = date_interval_create_from_date_string("1 day");
-		$curDate = new DateTime($startDate);
-		for($i = 0; $i < 7; ++$i)
-		{ 
-      			?>
+
 			<td class="tg-yw4l"><a href="chooseRecipe.php?Date=<?php $curDate->format('Y-m-d')?>">+Add a recipe</a><br><br>
         		<a href="">Recipe</a><br></td>
-			<?php
-			$curDate->add($interval);
-		} ?>
+
       <td class="tg-yw4l"><a href="recipeList.php">+Add a recipe</a><br><br>
         <a href="">Recipe</a><br></td>
       <td class="tg-yw4l"><a href="recipeList.php">+Add a recipe</a><br><br>

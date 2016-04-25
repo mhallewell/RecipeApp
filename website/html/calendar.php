@@ -18,7 +18,17 @@
 	$curDate = clone $startDate;
 	for($i = 0; $i < 7; ++$i)
 	{
-      		echo '<th class="tg-yw4l">'.$curDate->format('m-d-Y').'</th>';
+      if(i==1){
+        echo '<div class="navigateLeft"><a href="navigateLeft.php"><</a></div>';
+        echo '<th class="tg-yw4l">'.$curDate->format('m-d-Y').'</th>';
+      }
+      else if(i==7){
+        echo '<th class="tg-yw4l">'.$curDate->format('m-d-Y').'</th>';
+        echo '<div class="navigateRight"><a href="navigateRight.php">></a></div>';
+      }
+      else{
+      	echo '<th class="tg-yw4l">'.$curDate->format('m-d-Y').'</th>';
+      }
 
 		$curDate->modify('+1 day');
 	}?>
