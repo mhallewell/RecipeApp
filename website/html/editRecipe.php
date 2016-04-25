@@ -15,14 +15,22 @@
 <input type="text" name="recipeName" value="<?php echo $recipe->getName();?>">
 
 <h3>Ingredients</h3>
+<div id="ingrediendButtons">
+	<a href="javascript:void(0)" onclick="addIngredient()">Add Ingredient</a>
+	<a href="javascript:void(0)" onclick="removeIngredient()">Remove Ingredient</a>
+</div><br>
 <div class="chatForm">
+<div id="innerChatForm">
 <?php
-	$count = 1;
+	$count = 0;
 	foreach ($recipe->getIngredients() as $ingredient)
 	{
 	?>
-  <input type="text" name="ingredients[<?php echo $count; ?>][quantity]" value="<?php echo $ingredient->getQuantity();?>">
-  <input type="text" name="ingredients[<?php echo $count; ?>][name]" value="<?php echo $ingredient->getName();?>"><br>
+		<div id="F<?php echo $count; ?>">
+			<input type="text" name="ingredients[<?php echo $count; ?>][quantity]" value="<?php echo $ingredient->getQuantity();?>">
+			<input type="text" name="ingredients[<?php echo $count; ?>][name]" value="<?php echo $ingredient->getName();?>"><br>
+		</div>
+	</div>
 	<?php
 		$count += 1;
 	}
