@@ -35,8 +35,10 @@
 			if (isset($recipes))
 			{
 				foreach ($recipes as $recipe)
-				{				
-        				echo '<a href="viewRecipe.php?id='.$recipe->getId().'">'.strip_tags($recipe->getName()).'</a><br></td>';
+				{
+        				echo '<a href="viewRecipe.php?id='.$recipe->getId().'">'.strip_tags($recipe->getName()).'</a>';
+                echo '<a href="chooseRecipe.php?date=<?php echo $curDate->format('Y-m-d')?>';
+                echo '&id='.$recipe->getId().'">-</a><br></td>';
 				}
 			}
 			$curDate->add($interval);
