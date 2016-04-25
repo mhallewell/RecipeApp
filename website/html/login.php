@@ -15,8 +15,11 @@
 		<div id="fb-root"></div>
 		<div id="status"></div>
 		<div id="profile_picture"></div>
-		<div> <button onclick="login()">Facebook Login</button> </div>
-		<p id="token"></p>
+		<div class="hot-container">
+
+	<a href="javaxcript:void(0);" class="btn btn-blue" onclick="login()">Login with Facebook</a>
+
+	</div>
 	<!--<div class="img-holder">
 			<img src="image/dessert.jpg" />
 			<a class="link" href="main.html">Login</a>
