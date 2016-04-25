@@ -3,7 +3,7 @@
 <head>
   <link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="../js/header.js"></script>
+  <script src="js/header.js"></script>
 </head>
 <body>
   <table class="tg">
@@ -25,7 +25,7 @@
       			?>
 			<td class="tg-yw4l"><a href="chooseRecipe.php?Date=<?php echo $curDate->format('Y-m-d')?>">+Add a recipe</a><br><br>
 			<?php $recipes = $calDates[$curDate->format('Y-m-d')]->getRecipes();
-			if (isset($recipes)
+			if (isset($recipes))
 			{
 				foreach ($recipes as $recipe)
 				{				
