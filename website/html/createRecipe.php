@@ -18,8 +18,8 @@
 <h3>Ingredients</h3>
 <div id="Amount"></div>
 <div id="ingrediendButtons">
-	<button onclick="addIngredient()">Add Ingredient</button>
-	<button onclick="removeIngredient()">Remove Ingredient</button>
+	<a href="javascript:void(0)" onclick="addIngredient()">Add Ingredient</a>
+	<a href="javascript:void(0)" onclick="removeIngredient()">Remove Ingredient</a>
 </div><br>
 <div class="chatForm">
 	<div id="innerChatForm">
