@@ -230,6 +230,13 @@ img.mainBody{
 
 @media print { .hide, .show { display: none; } }
 
+#ingredientButtons a{
+  color: #000000;
+}
+#ingredientButtons a:hover{
+  color: #C0C0C0;
+}
+
 /*Calendar*/
 .navigateLeft a{
   position:absolute;
