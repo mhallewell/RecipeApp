@@ -30,18 +30,21 @@
 		for($i = 0; $i < 7; ++$i)
 		{
       			?>
-			<td class="tg-yw4l"><a href="chooseRecipe.php?Date=<?php echo $curDate->format('Y-m-d')?>">+Add a recipe</a><br><br>
+			<td class="tg-yw4l">
+			<div class="weekCalFixed"><a href="chooseRecipe.php?Date=<?php echo $curDate->format('Y-m-d')?>">+Add a recipe</a><br><br>
 			<?php $recipes = $calDates[$curDate->format('Y-m-d')]->getRecipes();
 			if (isset($recipes))
 			{
 				foreach ($recipes as $recipe)
 				{
         				echo '<a href="viewRecipe.php?id='.$recipe->getId().'">'.strip_tags($recipe->getName()).'</a>';
-                echo '<a href="chooseRecipe.php?date=<?php echo $curDate->format('Y-m-d')?>';
-                echo '&id='.$recipe->getId().'">-</a><br></td>';
+                echo '<a class="removeButton" href="removeRecipeFromDate.php?date='.$curDate->format('Y-m-d');
+                echo '&id='.$recipe->getId().'">';
+		echo '<img class="removeButtonImage" src="../image/minus-circle.jpg"/></a><br>';
 				}
 			}
 			$curDate->add($interval);
+			echo '</div></td>';
 		} ?>
     </tr>
   </table>

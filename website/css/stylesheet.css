@@ -277,3 +277,16 @@ img.mainBody{
 .tg .tg-yw4l{
   vertical-align:top
 }
+.weekCalFixed{
+  position:relative;
+}
+
+.removeButton{
+  position:absolute;
+  width: 10px;
+  right: 0;
+}
+
+.removeButtonImage {
+  width: 100%;
+}
