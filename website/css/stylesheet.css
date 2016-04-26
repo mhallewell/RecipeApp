@@ -265,7 +265,7 @@ img.mainBody{
   border-spacing:0;
   border-color:#aaa;
   position:relative;
-  z-index: -1;
+  //z-index: -1;
 }
 .tg td{
   font-family: 'Montserrat', sans-serif;
