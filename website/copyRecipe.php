@@ -25,7 +25,7 @@ else
 	// TODO Change to the correct main page
 	$_SESSION['database']->copyRecipe($_SESSION['user']->getUserId(), $recipe);
 
-	header("Location: recipeList.php");
+	header("Location: recipeList.php?viewMine=true");
 	die();
 }
 ?>
